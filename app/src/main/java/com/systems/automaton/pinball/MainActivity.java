@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import com.systems.automaton.pinball.ads.AdManager;
 import com.systems.automaton.pinball.databinding.ActivityMainBinding;
 
 public class MainActivity extends SDLActivity {
@@ -128,6 +129,8 @@ public class MainActivity extends SDLActivity {
             Intent i = new Intent(this, Settings.class);
             startActivity(i);
         });
+
+        AdManager.instance.initialize(this);
     }
 
     private void copyAssets(File filesDir) {
@@ -162,7 +165,12 @@ public class MainActivity extends SDLActivity {
 
         @Override
         public void onBallInPlungerChanged(boolean isBallInPlunger) {
-            runOnUiThread(() -> mBinding.plunger.setVisibility(isBallInPlunger ? View.VISIBLE : View.INVISIBLE));
+            runOnUiThread(() -> {
+                mBinding.plunger.setVisibility(isBallInPlunger ? View.VISIBLE : View.INVISIBLE);
+                if (isBallInPlunger) {
+                    AdManager.instance.showAd(MainActivity.this);
+                }
+            });
         }
 
         @Override
