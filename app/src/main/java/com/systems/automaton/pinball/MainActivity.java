@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import com.systems.automaton.pinball.ads.AdManager;
 import com.systems.automaton.pinball.databinding.ActivityMainBinding;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -199,8 +200,7 @@ public class MainActivity extends SDLActivity {
             startActivity(i);
         });
 
-        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.APP_OPEN, null);
+        AdManager.instance.initialize(this);
     }
 
     private void copyAssets(File filesDir) {
@@ -267,6 +267,7 @@ public class MainActivity extends SDLActivity {
                         }
                         mBinding.plunger.setVisibility(View.VISIBLE);
                     }), 3000);
+                    AdManager.instance.showAd(MainActivity.this);
                 } else {
                     if (plungerTimer != null) {
                         plungerTimer.removeCallbacksAndMessages(null);
