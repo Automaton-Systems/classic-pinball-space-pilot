@@ -17,7 +17,7 @@ void SpaceCadetPinballJNI::show_error_dialog(std::string title, std::string mess
 void SpaceCadetPinballJNI::notifyGameState(int state) {
     if (env == nullptr) g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
 
-    if (clazz == nullptr) clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
+    if (clazz == nullptr) clazz = env->FindClass("com/systems/automaton/pinball/JNIEntryPoint");
     jmethodID mid = env->GetStaticMethodID(clazz, "setState", "(I)V");
 
     env->CallStaticVoidMethod(clazz, mid, state);
@@ -26,7 +26,7 @@ void SpaceCadetPinballJNI::notifyGameState(int state) {
 void SpaceCadetPinballJNI::setBallInPlunger(bool isInPlunger) {
     if (env == nullptr) g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
 
-    if (clazz == nullptr) clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
+    if (clazz == nullptr) clazz = env->FindClass("com/systems/automaton/pinball/JNIEntryPoint");
     jmethodID mid = env->GetStaticMethodID(clazz, "setBallInPlunger", "(Z)V");
 
     env->CallStaticVoidMethod(clazz, mid, isInPlunger);
@@ -35,7 +35,7 @@ void SpaceCadetPinballJNI::setBallInPlunger(bool isInPlunger) {
 void SpaceCadetPinballJNI::addHighScore(int score) {
     if (env == nullptr) g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
 
-    if (clazz == nullptr) clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
+    if (clazz == nullptr) clazz = env->FindClass("com/systems/automaton/pinball/JNIEntryPoint");
     jmethodID mid = env->GetStaticMethodID(clazz, "addHighScore", "(I)V");
 
     env->CallStaticVoidMethod(clazz, mid, score);
@@ -44,7 +44,7 @@ void SpaceCadetPinballJNI::addHighScore(int score) {
 int SpaceCadetPinballJNI::getHighScore() {
     if (env == nullptr) g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
 
-    if (clazz == nullptr) clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
+    if (clazz == nullptr) clazz = env->FindClass("com/systems/automaton/pinball/JNIEntryPoint");
     jmethodID mid = env->GetStaticMethodID(clazz, "getHighScore", "()I");
 
     return env->CallStaticIntMethod(clazz, mid);
@@ -53,7 +53,7 @@ int SpaceCadetPinballJNI::getHighScore() {
 void SpaceCadetPinballJNI::displayText(const char* text, int type) {
     if (env == nullptr) g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
 
-    if (clazz == nullptr) clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
+    if (clazz == nullptr) clazz = env->FindClass("com/systems/automaton/pinball/JNIEntryPoint");
     jmethodID mid = env->GetStaticMethodID(clazz, "printString", "(Ljava/lang/String;I)V");
 
     jstring str = env->NewStringUTF(text);
@@ -64,7 +64,7 @@ void SpaceCadetPinballJNI::displayText(const char* text, int type) {
 void SpaceCadetPinballJNI::postRemainingBalls(int balls) {
     if (env == nullptr) g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
 
-    if (clazz == nullptr) clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
+    if (clazz == nullptr) clazz = env->FindClass("com/systems/automaton/pinball/JNIEntryPoint");
     jmethodID mid = env->GetStaticMethodID(clazz, "setRemainingBalls", "(I)V");
 
     env->CallStaticVoidMethod(clazz, mid, balls);
@@ -73,7 +73,7 @@ void SpaceCadetPinballJNI::postRemainingBalls(int balls) {
 void SpaceCadetPinballJNI::clearText(int type) {
     if (env == nullptr) g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
 
-    if (clazz == nullptr) clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
+    if (clazz == nullptr) clazz = env->FindClass("com/systems/automaton/pinball/JNIEntryPoint");
     jmethodID mid = env->GetStaticMethodID(clazz, "clearText", "(I)V");
 
     env->CallStaticVoidMethod(clazz, mid, type);
@@ -82,7 +82,7 @@ void SpaceCadetPinballJNI::clearText(int type) {
 void SpaceCadetPinballJNI::postScore(int score) {
     if (env == nullptr) g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
 
-    if (clazz == nullptr) clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
+    if (clazz == nullptr) clazz = env->FindClass("com/systems/automaton/pinball/JNIEntryPoint");
     jmethodID mid = env->GetStaticMethodID(clazz, "postScore", "(I)V");
 
     env->CallStaticVoidMethod(clazz, mid, score);
@@ -91,7 +91,7 @@ void SpaceCadetPinballJNI::postScore(int score) {
 void SpaceCadetPinballJNI::postBallCount(int count) {
     if (env == nullptr) g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
 
-    if (clazz == nullptr) clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
+    if (clazz == nullptr) clazz = env->FindClass("com/systems/automaton/pinball/JNIEntryPoint");
     jmethodID mid = env->GetStaticMethodID(clazz, "postBallCount", "(I)V");
 
     env->CallStaticVoidMethod(clazz, mid, count);
@@ -100,7 +100,7 @@ void SpaceCadetPinballJNI::postBallCount(int count) {
 void SpaceCadetPinballJNI::cheatsUsed() {
     if (env == nullptr) g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
 
-    if (clazz == nullptr) clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
+    if (clazz == nullptr) clazz = env->FindClass("com/systems/automaton/pinball/JNIEntryPoint");
     jmethodID mid = env->GetStaticMethodID(clazz, "cheatsUsed", "()V");
 
     env->CallStaticVoidMethod(clazz, mid);
@@ -109,7 +109,7 @@ void SpaceCadetPinballJNI::cheatsUsed() {
 void SpaceCadetPinballJNI::gameReady() {
     if (env == nullptr) g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
 
-    if (clazz == nullptr) clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
+    if (clazz == nullptr) clazz = env->FindClass("com/systems/automaton/pinball/JNIEntryPoint");
     jmethodID mid = env->GetStaticMethodID(clazz, "gameIsReady", "()V");
 
     env->CallStaticVoidMethod(clazz, mid);
@@ -117,7 +117,7 @@ void SpaceCadetPinballJNI::gameReady() {
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_fexed_spacecadetpinball_MainActivity_initNative(JNIEnv *env, jobject thiz,
+Java_com_systems_automaton_pinball_MainActivity_initNative(JNIEnv *env, jobject thiz,
         jstring data_path) {
 winmain::BasePath = (char *) env->GetStringUTFChars(data_path, nullptr);
     env->GetJavaVM(&g_JavaVM);

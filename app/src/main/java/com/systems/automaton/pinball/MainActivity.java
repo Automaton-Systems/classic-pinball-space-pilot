@@ -1,4 +1,4 @@
-package com.fexed.spacecadetpinball;
+package com.systems.automaton.pinball;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -31,7 +31,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import com.fexed.spacecadetpinball.databinding.ActivityMainBinding;
+import com.systems.automaton.pinball.databinding.ActivityMainBinding;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.firebase.analytics.FirebaseAnalytics;
 

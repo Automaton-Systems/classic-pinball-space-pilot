@@ -1,4 +1,4 @@
-package com.fexed.spacecadetpinball;
+package com.systems.automaton.pinball;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,8 +27,9 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.fexed.spacecadetpinball.databinding.ActivityMainBinding;
-import com.fexed.spacecadetpinball.databinding.ActivitySettingsBinding;
+import com.systems.automaton.pinball.BuildConfig;
+import com.systems.automaton.pinball.databinding.ActivityMainBinding;
+import com.systems.automaton.pinball.databinding.ActivitySettingsBinding;
 
 import org.json.JSONException;
 import org.json.JSONObject;
