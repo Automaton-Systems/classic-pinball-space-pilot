@@ -1,4 +1,4 @@
-package com.fexed.spacecadetpinball;
+package com.systems.automaton.pinball;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +9,6 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -22,7 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import com.fexed.spacecadetpinball.databinding.ActivityMainBinding;
+import com.systems.automaton.pinball.databinding.ActivityMainBinding;
 
 public class MainActivity extends SDLActivity {
     private static final String TAG = "MainActivity";
@@ -168,16 +167,16 @@ public class MainActivity extends SDLActivity {
 
         @Override
         public void onHighScorePresented(int score) {
-            int oldscore = getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getInt("highscore", 0);
+            int oldscore = getSharedPreferences("com.systems.automaton.pinball", Context.MODE_PRIVATE).getInt("highscore", 0);
             if (score > oldscore) {
-                getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).edit().putInt("highscore", score).apply();
+                getSharedPreferences("com.systems.automaton.pinball", Context.MODE_PRIVATE).edit().putInt("highscore", score).apply();
                 runOnUiThread(() -> Toast.makeText(getContext(), getString(R.string.newhighscore, score), Toast.LENGTH_LONG).show());
             }
         }
 
         @Override
         public int onHighScoreRequested() {
-            return getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getInt("highscore", 0);
+            return getSharedPreferences("com.systems.automaton.pinball", Context.MODE_PRIVATE).getInt("highscore", 0);
         }
 
         @Override
@@ -211,7 +210,7 @@ public class MainActivity extends SDLActivity {
         super.onResume();
         StateHelper.INSTANCE.addListener(mStateListener);
 
-        boolean tiltenabled = getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getBoolean("tiltbuttons", true);
+        boolean tiltenabled = getSharedPreferences("com.systems.automaton.pinball", Context.MODE_PRIVATE).getBoolean("tiltbuttons", true);
 
         if (tiltenabled) {
             mBinding.tiltLeft.setVisibility(View.VISIBLE);

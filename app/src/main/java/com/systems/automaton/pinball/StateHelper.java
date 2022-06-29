@@ -1,4 +1,4 @@
-package com.fexed.spacecadetpinball;
+package com.systems.automaton.pinball;
 
 import android.util.Log;
 
