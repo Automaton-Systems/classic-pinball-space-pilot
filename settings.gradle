@@ -3,8 +3,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
     }
 }
-rootProject.name = "Space Cadet Pinball"
+rootProject.name = "Classic Pinball — Space Pilot"
 include ':app'
