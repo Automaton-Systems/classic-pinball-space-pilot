@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.View;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.systems.automaton.pinball.BuildConfig;
@@ -43,7 +45,13 @@ public class Settings extends AppCompatActivity {
             getSharedPreferences("com.systems.automaton.pinball", Context.MODE_PRIVATE).edit().putBoolean("tiltbuttons", b).apply();
         });
 
-        mBinding.inpttxtusername.setText(getSharedPreferences("com.systems.automaton.pinball", Context.MODE_PRIVATE).getString("username", ""));
+        boolean customfonts = getSharedPreferences("com.systems.automaton.pinball", Context.MODE_PRIVATE).getBoolean("customfonts", true);
+        mBinding.cstmfnts.setChecked(customfonts);
+        mBinding.cstmfnts.setOnCheckedChangeListener((compoundButton, b) -> {
+            getSharedPreferences("com.systems.automaton.pinball", Context.MODE_PRIVATE).edit().putBoolean("customfonts", b).apply();
+        });
+
+        mBinding.inpttxtusername.setText(getSharedPreferences("com.systems.automaton.pinball", Context.MODE_PRIVATE).getString("username", "Player 1"));
         mBinding.inpttxtusername.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -59,6 +67,19 @@ public class Settings extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
 
             }
+        });
+        mBinding.volumebar.setProgress(getSharedPreferences("com.systems.automaton.pinball", Context.MODE_PRIVATE).getInt("volume", 100));
+        mBinding.volumebar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int percentage, boolean b) {
+                getSharedPreferences("com.systems.automaton.pinball", Context.MODE_PRIVATE).edit().putInt("volume", percentage).apply();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
     }
 }

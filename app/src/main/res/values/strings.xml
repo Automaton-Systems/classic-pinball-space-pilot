@@ -10,4 +10,7 @@
     <string name="balls">Ball %d</string>
     <string name="tiltbuttons">Tilt buttons</string>
     <string name="username">Username</string>
+    <string name="restartprompt">Long tap to restart the game</string>
+    <string name="volume">Volume</string>
+    <string name="customfonts">Custom fonts</string>
 </resources>

@@ -2,7 +2,6 @@
 #include "pinball.h"
 #include "winmain.h"
 
-// Todo: load translations from file
 std::map<uint32_t, LPCSTR> rc_strings
 {
 	{0, "Replay Awarded"},
@@ -233,6 +232,13 @@ char* pinball::get_rc_string(int uID, int a2)
 	if (++rc_string_slot >= 6)
 		rc_string_slot = 0;
 	return result;
+}
+
+void pinball::set_rc_string(int uID, LPCSTR str)
+{
+	auto it = rc_strings.find(uID);
+	rc_strings.erase(it);
+	rc_strings.insert(std::pair<uint32_t, LPCSTR>(uID, str));
 }
 
 int pinball::get_rc_int(int uID, int* dst)
