@@ -4,12 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,7 +27,6 @@ import java.io.OutputStream;
 
 import com.systems.automaton.pinball.ads.AdManager;
 import com.systems.automaton.pinball.databinding.ActivityMainBinding;
-import com.google.android.material.resources.TextAppearance;
 
 public class MainActivity extends SDLActivity {
     private static final String TAG = "MainActivity";
@@ -168,9 +164,9 @@ public class MainActivity extends SDLActivity {
         @Override
         public void onStateChanged(int state) {
             //runOnUiThread(() -> mBinding.replay.setVisibility(state == GameState.RUNNING ? View.GONE : View.VISIBLE));
-            setVolume(getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getInt("volume", 100));
+            setVolume(getSharedPreferences("com.systems.automaton.pinball", Context.MODE_PRIVATE).getInt("volume", 100));
             putTranslations();
-            putString(26, getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getString("username", "Player 1"));
+            putString(26, getSharedPreferences("com.systems.automaton.pinball", Context.MODE_PRIVATE).getString("username", "Player 1"));
         }
 
         @Override
@@ -240,7 +236,7 @@ public class MainActivity extends SDLActivity {
             mBinding.tiltBottom.setVisibility(View.GONE);
         }
 
-        boolean customfonts = getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getBoolean("customfonts", true);
+        boolean customfonts = getSharedPreferences("com.systems.automaton.pinball", Context.MODE_PRIVATE).getBoolean("customfonts", true);
 
         if (customfonts) {
             mBinding.ballstxt.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
@@ -286,7 +282,7 @@ public class MainActivity extends SDLActivity {
             mBinding.right.setTextColor(defaultColor);
         }
 
-        setVolume(getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getInt("volume", 100));
+        setVolume(getSharedPreferences("com.systems.automaton.pinball", Context.MODE_PRIVATE).getInt("volume", 100));
     }
 
     @Override

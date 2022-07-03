@@ -9,8 +9,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".Settings">
+        android:layout_height="wrap_content"
+        tools:context=".Settings">
 
         <TextView
             android:id="@+id/verstxtv"
@@ -21,9 +21,10 @@
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/highscoretxtv2"
-            app:layout_constraintStart_toStartOf="@+id/highscoretxtv2"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/volumebar"
             tools:text="1.01" />
 
         <TextView
@@ -40,52 +41,6 @@
             app:layout_constraintStart_toStartOf="@+id/inpttxtusername"
             app:layout_constraintTop_toTopOf="@+id/textView2"
             tools:text="118000" />
-
-        <TextView
-            android:id="@+id/highscoretxtv2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:gravity="center_horizontal"
-            android:text="@string/credits"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/githubtxtv" />
-
-        <TextView
-            android:id="@+id/gplaytxtv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="16dp"
-            android:autoLink="web"
-            android:gravity="center_horizontal"
-            android:text="@string/goto_googleplay"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/highscoretxtv2" />
-
-        <TextView
-            android:id="@+id/githubtxtv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:autoLink="web"
-            android:gravity="center_horizontal"
-            android:text="@string/goto_github"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/verstxtv" />
 
         <EditText
             android:id="@+id/inpttxtusername"

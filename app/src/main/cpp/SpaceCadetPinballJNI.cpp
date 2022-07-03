@@ -104,13 +104,13 @@ winmain::BasePath = (char *) env->GetStringUTFChars(data_path, nullptr);
 }
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_fexed_spacecadetpinball_MainActivity_setVolume(JNIEnv *env, jobject thiz, jint vol) {
+Java_com_systems_automaton_pinball_MainActivity_setVolume(JNIEnv *env, jobject thiz, jint vol) {
     Sound::SetVolume(vol);
 }
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_fexed_spacecadetpinball_MainActivity_putString(JNIEnv *env, jobject thiz, jint id, jstring str) {
+Java_com_systems_automaton_pinball_MainActivity_putString(JNIEnv *env, jobject thiz, jint id, jstring str) {
     LPCSTR mstr = (*env).GetStringUTFChars(str, nullptr);
     pinball::set_rc_string(id, mstr);
 }
