@@ -9,8 +9,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".Settings">
+        android:layout_height="wrap_content"
+        tools:context=".Settings">
 
         <View
             android:id="@+id/divider"

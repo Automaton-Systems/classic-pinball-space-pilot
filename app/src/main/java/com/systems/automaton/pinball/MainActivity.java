@@ -34,7 +34,6 @@ import java.io.OutputStream;
 import com.systems.automaton.pinball.ads.AdManager;
 import com.systems.automaton.pinball.databinding.ActivityMainBinding;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.firebase.analytics.FirebaseAnalytics;
 
 public class MainActivity extends SDLActivity {
     private static final String TAG = "MainActivity";
@@ -247,11 +246,6 @@ public class MainActivity extends SDLActivity {
 
             if (state == GameState.RUNNING) {
                 gamesInSession++;
-                runOnUiThread(() -> firebaseAnalytics.logEvent(FirebaseAnalytics.Event.LEVEL_START, null));
-            }
-
-            if (state == GameState.FINISHED) {
-                runOnUiThread(() -> firebaseAnalytics.logEvent(FirebaseAnalytics.Event.LEVEL_END, null));
             }
         }
 
