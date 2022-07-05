@@ -136,6 +136,6 @@ Java_com_systems_automaton_pinball_MainActivity_putString(JNIEnv *env, jobject t
 }
 extern "C"
 JNIEXPORT jboolean JNICALL
-Java_com_fexed_spacecadetpinball_MainActivity_checkCheatsUsed(JNIEnv *env, jobject thiz) {
+Java_com_systems_automaton_pinball_MainActivity_checkCheatsUsed(JNIEnv *env, jobject thiz) {
     return control::check_cheats();
 }

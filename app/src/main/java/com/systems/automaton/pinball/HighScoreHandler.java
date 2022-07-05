@@ -1,4 +1,4 @@
-package com.fexed.spacecadetpinball;
+package com.systems.automaton.pinball;
 
 import static com.fexed.spacecadetpinball.PrefsHelper.*;
 import android.content.Context;
