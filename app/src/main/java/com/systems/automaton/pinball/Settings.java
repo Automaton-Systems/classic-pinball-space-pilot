@@ -119,11 +119,11 @@ public class Settings extends AppCompatActivity {
         });
 
         mBinding.gplaytxtv.setOnClickListener(v -> {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/dev?id=6687966458279653723"));
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/automaton82/classic-pinball-space-pilot"));
             startActivity(browserIntent);
         });
         mBinding.githubtxtv.setOnClickListener(v -> {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/fexed/Pinball-on-Android/releases/latest"));
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/automaton82/classic-pinball-space-pilot"));
             startActivity(browserIntent);
         });
 
