@@ -68,6 +68,12 @@ public class Settings extends AppCompatActivity {
 
             }
         });
+
+        mBinding.source.setOnClickListener(v -> {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/automaton82/classic-pinball-space-pilot"));
+            startActivity(browserIntent);
+        });
+
         mBinding.volumebar.setProgress(getSharedPreferences("com.systems.automaton.pinball", Context.MODE_PRIVATE).getInt("volume", 100));
         mBinding.volumebar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
