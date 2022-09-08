@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.fexed.spacecadetpinball",
+  "applicationId": "com.systems.automaton.pinball",
   "variantName": "release",
   "elements": [
     {

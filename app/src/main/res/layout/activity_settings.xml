@@ -194,23 +194,6 @@
             tools:text="118000" />
 
         <TextView
-            android:id="@+id/highscoretxtv2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:gravity="center_horizontal"
-            android:text="@string/credits"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/highscoretxtv4" />
-
-        <TextView
             android:id="@+id/highscoretxtv4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -425,6 +408,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
+                android:visibility="gone"
                 android:text="@string/leaderboard" />
 
         </LinearLayout>
