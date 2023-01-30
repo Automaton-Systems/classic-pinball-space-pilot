@@ -11,8 +11,8 @@ android {
         applicationId "com.systems.automaton.pinball"
         minSdk 21
         targetSdk 33
-        versionCode 22
-        versionName "2.2"
+        versionCode 23
+        versionName "2.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
