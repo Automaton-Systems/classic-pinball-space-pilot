@@ -11,8 +11,8 @@ android {
         applicationId "com.systems.automaton.pinball"
         minSdk 21
         targetSdk 33
-        versionCode 23
-        versionName "2.3"
+        versionCode 26
+        versionName "2.6"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -23,6 +23,7 @@ android {
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
 
     externalNativeBuild {
         cmake {

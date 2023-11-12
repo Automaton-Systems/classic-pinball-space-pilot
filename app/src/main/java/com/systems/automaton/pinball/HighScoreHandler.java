@@ -1,6 +1,6 @@
 package com.systems.automaton.pinball;
 
-import static com.fexed.spacecadetpinball.PrefsHelper.*;
+import static com.systems.automaton.pinball.PrefsHelper.*;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Looper;

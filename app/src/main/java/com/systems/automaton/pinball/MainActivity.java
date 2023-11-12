@@ -47,7 +47,6 @@ public class MainActivity extends SDLActivity {
     private int remainingBalls = 0;
     private BottomSheetBehavior<ConstraintLayout> bottomSheetBehavior;
 
-    private FirebaseAnalytics firebaseAnalytics;
     private int gamesInSession = 0;
 
     static private MediaPlayer player;
@@ -59,7 +58,7 @@ public class MainActivity extends SDLActivity {
         File filesDir = getFilesDir();
         copyAssets(filesDir);
         initNative(filesDir.getAbsolutePath() + "/");
-        PrefsHelper.setPrefs(getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE));
+        PrefsHelper.setPrefs(getSharedPreferences("com.systems.automaton.pinball", Context.MODE_PRIVATE));
 
         try {
             if (PrefsHelper.getMusic()) {
@@ -261,7 +260,9 @@ public class MainActivity extends SDLActivity {
                         }
                         mBinding.plunger.setVisibility(View.VISIBLE);
                     }), 3000);
-                    AdManager.instance.showAd(MainActivity.this);
+                    if (ballCount > 0 && ballCount % 2 == 0) {
+                        runOnUiThread(() -> AdManager.instance.showAd(MainActivity.this));
+                    }
                 } else {
                     if (plungerTimer != null) {
                         plungerTimer.removeCallbacksAndMessages(null);
@@ -277,9 +278,6 @@ public class MainActivity extends SDLActivity {
         public void onHighScorePresented(int score) {
             if (HighScoreHandler.postHighScore(getContext(), score)) {
                 runOnUiThread(() -> Toast.makeText(getContext(), getString(R.string.newhighscore, score), Toast.LENGTH_LONG).show());
-                Bundle bndl = new Bundle();
-                bndl.putInt(FirebaseAnalytics.Param.SCORE, score);
-                runOnUiThread(() -> firebaseAnalytics.logEvent(FirebaseAnalytics.Event.POST_SCORE, bndl));
             }
         }
 
@@ -320,7 +318,6 @@ public class MainActivity extends SDLActivity {
         public void onCheatsUsed() {
             PrefsHelper.setCheatsUsed(true);
             runOnUiThread(() -> mBinding.cheatAlert.setVisibility(View.VISIBLE));
-            runOnUiThread(() -> firebaseAnalytics.logEvent("cheat_used", null));
         }
 
         @Override
@@ -477,9 +474,6 @@ public class MainActivity extends SDLActivity {
 
     @Override
     protected void onStop() {
-        Bundle bndl = new Bundle();
-        bndl.putInt("games_per_session", gamesInSession);
-        firebaseAnalytics.logEvent("games_per_session", bndl);
         super.onStop();
     }
 

@@ -255,7 +255,7 @@ public class Settings extends AppCompatActivity {
             startActivity(i);
         });
 
-        checkLatestRelease();
+        //checkLatestRelease();
     }
 
     public void checkLatestRelease() {

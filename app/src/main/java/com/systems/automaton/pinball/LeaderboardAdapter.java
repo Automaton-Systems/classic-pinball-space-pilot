@@ -1,4 +1,4 @@
-package com.fexed.spacecadetpinball;
+package com.systems.automaton.pinball;
 
 import android.view.LayoutInflater;
 import android.view.View;
