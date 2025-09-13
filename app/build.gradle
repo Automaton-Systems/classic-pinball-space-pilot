@@ -39,10 +39,11 @@ android {
         }
     }
 
-    // Ensure 16 KB page size compatibility
+    // Ensure 16 KB page size compatibility and handle resource conflicts
     packagingOptions {
         pickFirst '**/libc++_shared.so'
         pickFirst '**/libjsc.so'
+        resources.excludes.add("META-INF/*")
     }
 
     buildFeatures{
@@ -69,10 +70,6 @@ android {
         unitTests.all {
             useJUnitPlatform()
         }
-    }
-
-    packagingOptions {
-        resources.excludes.add("META-INF/*")
     }
 }
 

@@ -140,8 +140,16 @@ set(SDL_STATIC OFF CACHE BOOL "Build SDL as static library" FORCE)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-error=declaration-after-statement")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-error=declaration-after-statement")
 
+# Add 16KB page size alignment for Android 15+ compatibility
+set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,-z,max-page-size=16384")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-z,max-page-size=16384")
+
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/SDL)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/SDL_mixer)
+
+# Ensure SDL libraries also use 16KB page alignment
+set_target_properties(SDL2 PROPERTIES LINK_FLAGS "-Wl,-z,max-page-size=16384")
+set_target_properties(SDL2_mixer PROPERTIES LINK_FLAGS "-Wl,-z,max-page-size=16384")
 
 # Fix SDL compilation flags after the target is defined
 get_target_property(SDL2_COMPILE_OPTIONS SDL2 COMPILE_OPTIONS)
