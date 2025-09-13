@@ -12,15 +12,15 @@ android {
         applicationId "com.systems.automaton.pinball"
         minSdk 21
         targetSdk 35
-        versionCode 27
-        versionName "2.7"
+        versionCode 28
+        versionName "2.8"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         
-        // Support for 16 KB memory page sizes (required for Android 15+)
+        // Support for all common ABIs while ensuring 16KB page size compatibility
+        // Note: 16KB page size is primarily a concern for arm64-v8a on Android 15+
         ndk {
-            // Ensure compatibility with 16KB page sizes
-            abiFilters 'arm64-v8a', 'x86_64'
+            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
         }
     }
 
