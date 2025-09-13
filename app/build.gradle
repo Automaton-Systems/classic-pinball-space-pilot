@@ -6,16 +6,22 @@ apply plugin: 'kotlin-android'
 
 android {
     namespace "com.systems.automaton.pinball"
-    compileSdk 33
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.systems.automaton.pinball"
         minSdk 21
-        targetSdk 33
-        versionCode 26
-        versionName "2.6"
+        targetSdk 35
+        versionCode 27
+        versionName "2.7"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        
+        // Support for 16 KB memory page sizes (required for Android 15+)
+        ndk {
+            // Ensure compatibility with 16KB page sizes
+            abiFilters 'arm64-v8a', 'x86_64'
+        }
     }
 
     buildTypes {
@@ -33,9 +39,24 @@ android {
         }
     }
 
+    // Ensure 16 KB page size compatibility
+    packagingOptions {
+        pickFirst '**/libc++_shared.so'
+        pickFirst '**/libjsc.so'
+    }
+
     buildFeatures{
         viewBinding true
         buildConfig true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
     }
 
     lintOptions {
