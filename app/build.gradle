@@ -5,16 +5,23 @@ plugins {
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdk 33
+    namespace "com.systems.automaton.pinball"
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.systems.automaton.pinball"
         minSdk 21
-        targetSdk 33
-        versionCode 26
-        versionName "2.6"
+        targetSdk 35
+        versionCode 28
+        versionName "2.8"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        
+        // Support for all common ABIs while ensuring 16KB page size compatibility
+        // Note: 16KB page size is primarily a concern for arm64-v8a on Android 15+
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+        }
     }
 
     buildTypes {
@@ -32,8 +39,25 @@ android {
         }
     }
 
+    // Ensure 16 KB page size compatibility and handle resource conflicts
+    packagingOptions {
+        pickFirst '**/libc++_shared.so'
+        pickFirst '**/libjsc.so'
+        resources.excludes.add("META-INF/*")
+    }
+
     buildFeatures{
         viewBinding true
+        buildConfig true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
     }
 
     lintOptions {
@@ -46,10 +70,6 @@ android {
         unitTests.all {
             useJUnitPlatform()
         }
-    }
-
-    packagingOptions {
-        resources.excludes.add("META-INF/*")
     }
 }
 

@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.10.2)
 set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_C_STANDARD 99)
 project(SpaceCadetPinball)
 
 set(SOURCE_FILES
@@ -130,8 +131,35 @@ add_library(SpaceCadetPinball SHARED ${SOURCE_FILES})
 include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/SDL/include
         ${CMAKE_CURRENT_SOURCE_DIR}/SDL_mixer/include)
+
+# Configure SDL build to be less strict about C99 features
+set(SDL_SHARED ON CACHE BOOL "Build SDL as shared library" FORCE)
+set(SDL_STATIC OFF CACHE BOOL "Build SDL as static library" FORCE)
+
+# Remove problematic warning flags for C99 compatibility
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-error=declaration-after-statement")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-error=declaration-after-statement")
+
+# Add 16KB page size alignment for Android 15+ compatibility
+set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,-z,max-page-size=16384")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-z,max-page-size=16384")
+
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/SDL)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/SDL_mixer)
+
+# Ensure SDL libraries also use 16KB page alignment
+set_target_properties(SDL2 PROPERTIES LINK_FLAGS "-Wl,-z,max-page-size=16384")
+set_target_properties(SDL2_mixer PROPERTIES LINK_FLAGS "-Wl,-z,max-page-size=16384")
+
+# Fix SDL compilation flags after the target is defined
+get_target_property(SDL2_COMPILE_OPTIONS SDL2 COMPILE_OPTIONS)
+if(SDL2_COMPILE_OPTIONS)
+    list(REMOVE_ITEM SDL2_COMPILE_OPTIONS "-Werror=declaration-after-statement")
+    set_target_properties(SDL2 PROPERTIES COMPILE_OPTIONS "${SDL2_COMPILE_OPTIONS}")
+endif()
+
+# Alternative approach - override compile flags directly
+target_compile_options(SDL2 PRIVATE -Wno-error=declaration-after-statement)
 
 find_library(log-lib log)
 
