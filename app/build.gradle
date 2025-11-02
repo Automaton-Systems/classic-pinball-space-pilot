@@ -10,10 +10,10 @@ android {
 
     defaultConfig {
         applicationId "com.systems.automaton.pinball"
-        minSdk 21
+        minSdk 23
         targetSdk 35
-        versionCode 28
-        versionName "2.8"
+        versionCode 29
+        versionName "2.9"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         
@@ -35,7 +35,7 @@ android {
     externalNativeBuild {
         cmake {
             path file('src/main/cpp/CMakeLists.txt')
-            version '3.18.1'
+            version '3.22.1'
         }
     }
 
@@ -87,7 +87,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     /** Google **/
-    implementation 'com.google.android.gms:play-services-ads:21.4.0'
+    implementation 'com.google.android.gms:play-services-ads:24.7.0'
     implementation platform('com.google.firebase:firebase-bom:29.3.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
 }
