@@ -9,6 +9,7 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -17,11 +18,15 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import org.libsdl.app.SDLActivity;
 
@@ -55,6 +60,7 @@ public class MainActivity extends SDLActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setFullscreen();
         File filesDir = getFilesDir();
         copyAssets(filesDir);
         initNative(filesDir.getAbsolutePath() + "/");
@@ -81,6 +87,7 @@ public class MainActivity extends SDLActivity {
         mLayout.addView(mBinding.getRoot(), layoutParams);
 
         mBinding.getRoot().bringToFront();
+        applyOverlayInsets();
 
         bottomSheetBehavior = BottomSheetBehavior.from(mBinding.bottomsheet);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
@@ -225,7 +232,27 @@ public class MainActivity extends SDLActivity {
         }
     }
 
+    private void applyOverlayInsets() {
+        int initialLeft = mBinding.getRoot().getPaddingLeft();
+        int initialTop = mBinding.getRoot().getPaddingTop();
+        int initialRight = mBinding.getRoot().getPaddingRight();
+        int initialBottom = mBinding.getRoot().getPaddingBottom();
+
+        ViewCompat.setOnApplyWindowInsetsListener(mBinding.getRoot(), (view, windowInsets) -> {
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.statusBars() | WindowInsetsCompat.Type.displayCutout());
+            view.setPadding(initialLeft, initialTop + insets.top, initialRight, initialBottom);
+            return windowInsets;
+        });
+        ViewCompat.requestApplyInsets(mBinding.getRoot());
+    }
+
     private void setFullscreen() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            WindowManager.LayoutParams attributes = getWindow().getAttributes();
+            attributes.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_ALWAYS;
+            getWindow().setAttributes(attributes);
+        }
+
         int ui_Options = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
